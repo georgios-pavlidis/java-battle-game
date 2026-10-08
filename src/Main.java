@@ -64,6 +64,18 @@ public class Main {
     static void enemyTurn(Monster enemy, Monster player) {
 
         Random random = new Random();
+
+        if (enemy.getHp() <= 40) {
+
+            for (Move move : enemy.getMoves()) {
+
+                if (move.getType() == MoveType.HEAL) {
+                    executeMove(enemy, player, move);
+                    return;
+                }
+            }
+        }
+
         int moveIndex = random.nextInt(enemy.getMoves().size());
 
         Move chosenMove = enemy.getMoves().get(moveIndex);
@@ -91,10 +103,10 @@ public class Main {
 
         // ELEKOS MOVES
         Move spark = new Move("Spark", 0, 100, MoveType.ATTACK);
-        Move thunderFang = new Move("Thunder Fang", 5, 90, MoveType.ATTACK);
+        Move thunderFang = new Move("Thunder Fang", 22, 90, MoveType.ATTACK);
         Move lightningBolt = new Move("Lightning Bolt", 12, 75, MoveType.ATTACK);
 
-        Move growl = new Move("Growl", 0, 100, MoveType.LOWER_ATTACK);
+        Move growl = new Move("Growl", 50, 100, MoveType.LOWER_ATTACK);
 
         Move recover = new Move("Recover", 30, 100, MoveType.HEAL);
 
@@ -130,6 +142,7 @@ public class Main {
         xortos.addMove(vineWhip);
         xortos.addMove(leafBlade);
         xortos.addMove(seedBomb);
+        xortos.addMove(growl);
 
         elekos.addMove(spark);
         elekos.addMove(thunderFang);
@@ -138,9 +151,19 @@ public class Main {
         for (int i = 0; i < monsters.size(); i++){
             System.out.println((i + 1) + ". " + monsters.get(i).getName());
         }
+        int monsterChoice;
+        while(true) {
+            monsterChoice = scanner.nextInt();
 
-        int monsterChoice = scanner.nextInt();
-        scanner.nextLine();
+            scanner.nextLine();
+
+            if (monsterChoice < 1 || monsterChoice > monsters.size()) {
+                System.out.println("Invalid choice");
+                continue;
+            }
+
+            break;
+        }
 
         Monster player = monsters.get(monsterChoice -1);
 
@@ -171,18 +194,27 @@ public class Main {
                 showPlayerMoves(player);
 
                 //αυτο ειναι για την επιλογη επιθεσης
-                int choice = scanner.nextInt();
-                scanner.nextLine();
+                int choice;
+                while (true) {
+                    choice = scanner.nextInt();
+                    if (choice < 1 || choice > player.getMoves().size()) {
+                        System.out.println("Invalid choice.");
+                        continue;
+                    }
+                    scanner.nextLine();
+                    break;
+                }
 
-                Move chosenMove = player.getMoves().get(choice -1);
+                Move chosenMove = player.getMoves().get(choice - 1);
 
                 executeMove(player, enemy, chosenMove);
-
+                validChoice = true;
                 if (!enemy.isAlive()) {
                     System.out.println(player.getName() + " wins!");
                     break;
 
                 }
+
             }
 
             if (!enemy.isAlive()) {

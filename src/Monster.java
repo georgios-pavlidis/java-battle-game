@@ -19,7 +19,7 @@ public class Monster {
         this.maxHp = hp;
         this.attack = attack;
         this.defence = defence;
-        this.originalAttack = originalAttack;
+        this.originalAttack = attack;
 
         this.moves= new ArrayList<>();
 
@@ -84,6 +84,11 @@ public class Monster {
 
 
     int lowerAttack(Move move, Monster target){
+
+        System.out.println("Original attack: " + target.originalAttack);
+        System.out.println("Move power: " + move.getPower());
+
+
         int reduction = (int)(target.originalAttack * (move.getPower() / 100.0));
         target.attack = target.attack - reduction;
 
