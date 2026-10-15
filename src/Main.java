@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Main {
 
+
     //player move selection
     static void showPlayerMoves(Monster player) {
 
@@ -87,28 +88,28 @@ public class Main {
 
         //move creation
         // PYROS MOVES
-        Move slash = new Move("Slash", 0, 100, MoveType.ATTACK);
-        Move emberClaw = new Move("Ember Claw", 5, 90, MoveType.ATTACK);
-        Move flameBurst = new Move("Flame Burst", 12, 75, MoveType.ATTACK);
+        Move slash = new Move("Slash", 0, 100, MoveType.ATTACK, MonsterType.NORMAL);
+        Move emberClaw = new Move("Ember Claw", 5, 90, MoveType.ATTACK, MonsterType.FIRE);
+        Move flameBurst = new Move("Flame Burst", 12, 75, MoveType.ATTACK, MonsterType.FIRE);
 
         // PAGOS MOVES
-        Move iceShard = new Move("Ice Shard", 0, 100, MoveType.ATTACK);
-        Move frostBite = new Move("Frost Bite", 5, 90, MoveType.ATTACK);
-        Move blizzard = new Move("Blizzard", 12, 75, MoveType.ATTACK);
+        Move iceShard = new Move("Ice Shard", 0, 100, MoveType.ATTACK, MonsterType.ICE);
+        Move frostBite = new Move("Frost Bite", 5, 90, MoveType.ATTACK, MonsterType.ICE);
+        Move blizzard = new Move("Blizzard", 12, 75, MoveType.ATTACK, MonsterType.ICE);
 
         // XORTOS MOVES
-        Move vineWhip = new Move("Vine Whip", 0, 100, MoveType.ATTACK);
-        Move leafBlade = new Move("Leaf Blade", 5, 90, MoveType.ATTACK);
-        Move seedBomb = new Move("Seed Bomb", 12, 75, MoveType.ATTACK);
+        Move vineWhip = new Move("Vine Whip", 0, 100, MoveType.ATTACK, MonsterType.GRASS);
+        Move leafBlade = new Move("Leaf Blade", 5, 90, MoveType.ATTACK, MonsterType.GRASS);
+        Move seedBomb = new Move("Seed Bomb", 12, 75, MoveType.ATTACK, MonsterType.GRASS);
 
         // ELEKOS MOVES
-        Move spark = new Move("Spark", 0, 100, MoveType.ATTACK);
-        Move thunderFang = new Move("Thunder Fang", 22, 90, MoveType.ATTACK);
-        Move lightningBolt = new Move("Lightning Bolt", 12, 75, MoveType.ATTACK);
+        Move spark = new Move("Spark", 0, 100, MoveType.ATTACK, MonsterType.ELECTRIC);
+        Move thunderFang = new Move("Thunder Fang", 22, 90, MoveType.ATTACK, MonsterType.ELECTRIC);
+        Move lightningBolt = new Move("Lightning Bolt", 12, 75, MoveType.ATTACK, MonsterType.ELECTRIC);
 
-        Move growl = new Move("Growl", 50, 100, MoveType.LOWER_ATTACK);
+        Move growl = new Move("Growl", 50, 100, MoveType.LOWER_ATTACK, MonsterType.NORMAL);
 
-        Move recover = new Move("Recover", 30, 100, MoveType.HEAL);
+        Move recover = new Move("Recover", 30, 100, MoveType.HEAL, MonsterType.NORMAL);
 
 
         //creation of list of monsters
@@ -118,10 +119,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         //moster creation
-        Monster pyros = new Monster("Pyros",100,36,12);
-        Monster pagos = new Monster("Pagos",100,28,23);
-        Monster xortos = new Monster("Xortos",100,33,18);
-        Monster elekos = new Monster("Elekos",100,40,8);
+        Monster pyros = new Monster("Pyros",100,36,12, MonsterType.FIRE);
+        Monster pagos = new Monster("Pagos",100,28,23, MonsterType.ICE);
+        Monster xortos = new Monster("Xortos",100,33,18, MonsterType.GRASS);
+        Monster elekos = new Monster("Elekos",100,40,8, MonsterType.ELECTRIC);
 
         //monsters being added to the list
         monsters.add(pyros);
